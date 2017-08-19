@@ -15,7 +15,7 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
-public:
+private:
 	ATank* GetControlledTank() const;
 	
 	virtual void BeginPlay() override;
@@ -25,7 +25,24 @@ public:
 	//the crosshair intersects the world
 	void AimTowardsCrosshair();
 
-private:
+
 	//returns an out param, true if hit land
-	bool GetSightRayHitLocation(FVector & OutHitLocation) const;
+	bool GetSightRayHitLocation(FVector& OUT HitLocation) const;
+
+
+	//Get world loc if raytrace through crosshair, true if hits land
+
+
+	bool GetLookVectorHitLocation(const FVector & LookDirection, FVector & HitLocation) const;
+
+	bool GetLookDirection(const FVector2D & ScreenLocation, FVector & LookDirection) const;
+
+	UPROPERTY(EditAnywhere)
+	float CrosshairXLocation = 0.5;
+
+	UPROPERTY(EditAnywhere)
+	float CrosshairYLocation = 0.3333;
+
+	UPROPERTY(EditAnywhere)
+    float LineTraceRange = 1000000;
 };
